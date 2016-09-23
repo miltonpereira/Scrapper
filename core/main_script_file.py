@@ -2,15 +2,20 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import os.path
+import builtwith
 
-def GenerateHtml(base_url,payload):
+def generate_html(base_url,payload):
+	'''
+	In this function request is sent and html reponse
+	is recorded in html_doc
+	'''
 
 	r = requests.get(base_url, params=payload)
 	print ("Your'r on" ,r.url)
 	html_doc= (r.content)
 	return html_doc	
 
-def parsing_and_scrape_data(raw_data):
+def parsing_data(raw_data):
 		
 		
 		soup = BeautifulSoup(raw_data,'html.parser')
@@ -23,13 +28,13 @@ def parsing_and_scrape_data(raw_data):
 			title = (atag.text)
 			link=(cite.text)
 			print (link)
+			links=strip_url_to_domain(link)
+			print (links)
 			product_details["Title"]=title
-			product_details["Links"]=link
+			product_details["Links"]=links
 			write_on_csv(product_details)
 		
 		
-
-
 def write_on_csv(data):
 
 	file_exists = os.path.isfile('googleresults.csv')
@@ -42,3 +47,12 @@ def write_on_csv(data):
 		
 		writer.writerow(data)
 		print ('wrote on to the file')
+
+def strip_url_to_domain(urls):
+    link= urls.split("//")[-1].split("/")[0]
+    links= link
+    return links
+
+def get_data_builtwith(links):
+	website = builtwith.parse(links)
+	print (website)
