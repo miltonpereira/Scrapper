@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-FIELD_TITLE = "Titles"
+FIELD_TITLE = "Title"
 FIELD_LINKS = "Links"
 
 
