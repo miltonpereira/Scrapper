@@ -1,23 +1,18 @@
-import requests
-import time 
-import main_script_file 
-import os
+""" running the base url """
+
+import time
+import main_script_file
 
 
-PgNo=10
-TotalPages=40#This number of pages it will scrap data
+PG_NO = 10
+TOTAL_PAGES = 40
 
-while PgNo<=TotalPages: 
-	base_url="https://www.google.co.in"
-	keyword=('QA Companies') # Kewyword to scrap data for
-	payload = {'q':keyword, 'start':PgNo}
-	#headers = {'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
-	data=main_script_file.generate_html(base_url,payload)
-	final_data=main_script_file.parsing_data(data)
-	PgNo=PgNo+10
-	time.sleep(60)
-
-print ('Your script has been executed! Bye')
-
-
-	
+while PG_NO <= TOTAL_PAGES:
+    BASE_URL = "https://www.google.co.in"
+    KEY_WORD = ('QA Companies')
+    payload = {'q': KEY_WORD, 'start': PG_NO}
+    data = main_script_file.fetch_html(BASE_URL, payload)
+    FINAL_DATA = main_script_file.parse_and_scrape_data(data)
+    PG_NO = PG_NO + 10
+    time.sleep(60)
+print('Your script has been executed! Bye')

@@ -1,6 +1,6 @@
+"""Main script of the scraper program"""
 import csv
 import os.path
-import builtwith
 import requests
 from bs4 import BeautifulSoup
 
@@ -28,7 +28,7 @@ def parse_and_scrape_data(raw_data):
             FIELD_LINKS: links,
         }
         write_on_csv(product_details)
-
+    return write_on_csv
 
 def write_on_csv(product_details, filename="googleresults.csv"):
     file_exists = os.path.isfile(filename)
@@ -46,5 +46,3 @@ def write_on_csv(product_details, filename="googleresults.csv"):
 
 if __name__ == "__main__":
     print("Running as a progam")
-    # TODO: Do something useful
-
