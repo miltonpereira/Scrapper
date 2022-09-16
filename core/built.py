@@ -1,5 +1,5 @@
+"""Access the items from the website"""
 __author__ = 'BackOffice-3'
-
 
 import builtwith
 
